@@ -2,7 +2,7 @@
   "name": "remember-desktops",
   "displayName": "Remember Desktops",
   "description": "Restore your editor windows to their last workspace/virtual desktop on Linux",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "publisher": "mathiscode",
   "author": {
