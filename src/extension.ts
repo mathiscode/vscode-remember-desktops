@@ -66,6 +66,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		// 	outputChannel.appendLine(`  PID ${window.pid} on desktop ${window.desktop}: ${window.title}`)
 		// }
 
+		if (processWindows.every(window => window.desktop === '0')) {
+			outputChannel.appendLine('All windows are on desktop 0, skipping save')
+			return
+		}
+
 		context.globalState.update('processWindows', processWindows)
 	})
 

@@ -78,6 +78,7 @@
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
+    "vscode:publish": "vsce publish",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
