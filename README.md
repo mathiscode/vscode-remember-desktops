@@ -6,4 +6,4 @@ On some Linux desktop managers, Visual Studio Code editors don't remember their 
 
 ## Usage
 
-There are commands to save the editor locations, and to restore them, but by default the extension will start working automatically when it is installed.
+There are command palette entries to save, restore, and forget the editor locations - but by default the extension will start working automatically when it is installed.

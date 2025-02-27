@@ -16,9 +16,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	if (vscode.workspace.getConfiguration('remember-desktops').get('intervalEnabled')) {
 		vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
-		saveInterval = setInterval(() => {
-			vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
-		}, vscode.workspace.getConfiguration('remember-desktops').get('saveInterval'))
+
+    setTimeout(() => {
+      saveInterval = setInterval(() => {
+        vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
+      }, vscode.workspace.getConfiguration('remember-desktops').get('saveInterval'))
+    }, 30_000) // give windows time to be moved before we start saving
 	}
 
 	const saveDisposable = vscode.commands.registerCommand('remember-desktops.saveEditorLocations', async () => {
