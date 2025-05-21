@@ -10,18 +10,25 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	const processName = path.basename(process.argv[0])
 	const outputChannel = vscode.window.createOutputChannel('Remember Desktops')
-	if (context.globalState.get('processWindows')) vscode.commands.executeCommand('remember-desktops.restoreToDesktops')
+
+	if (context.globalState.get('processWindows')) {
+		setTimeout(
+			() => vscode.commands.executeCommand('remember-desktops.restoreToDesktops'),
+			vscode.workspace.getConfiguration('remember-desktops').get('restoreDelay') || 500
+		)
+	}
+
 	outputChannel.appendLine(`Remember Desktops activated for process: ${processName}`)
 	outputChannel.appendLine('- https://github.com/mathiscode/vscode-remember-desktops')
 
 	if (vscode.workspace.getConfiguration('remember-desktops').get('intervalEnabled')) {
 		vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
 
-    setTimeout(() => {
-      saveInterval = setInterval(() => {
-        vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
-      }, vscode.workspace.getConfiguration('remember-desktops').get('saveInterval'))
-    }, 30_000) // give windows time to be moved before we start saving
+		setTimeout(() => {
+			saveInterval = setInterval(() => {
+				vscode.commands.executeCommand('remember-desktops.saveEditorLocations')
+			}, vscode.workspace.getConfiguration('remember-desktops').get('saveInterval'))
+		}, 30_000) // give windows time to be moved before we start saving
 	}
 
 	const saveDisposable = vscode.commands.registerCommand('remember-desktops.saveEditorLocations', async () => {

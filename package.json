@@ -72,6 +72,11 @@
           "type": "boolean",
           "default": true,
           "description": "Whether to automatically restore editor locations when the editor starts"
+        },
+        "remember-desktops.restoreDelay": {
+          "type": "number",
+          "default": 500,
+          "description": "The delay in milliseconds to wait before restoring editor locations"
         }
       }
     }
